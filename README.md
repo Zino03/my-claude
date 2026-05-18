@@ -1,7 +1,7 @@
 # claude-config
 
-Claude Code 프로젝트 자동 셋업 도구.  
-`bash setup.sh` 한 줄로 React + TypeScript + Tailwind 환경을 구성합니다.
+Claude Code를 활용한 프론트엔드 프로젝트 자동화 도구.  
+`/setup` 슬래시 커맨드 하나로 React + TypeScript + Tailwind 환경을 즉시 구성합니다.
 
 ---
 
@@ -9,20 +9,23 @@ Claude Code 프로젝트 자동 셋업 도구.
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/claude-config ~/claude-config
-bash ~/claude-config/setup.sh
 ```
 
-실행하면 프로젝트 이름을 입력받고 자동으로 셋업합니다.
+VS Code에서 폴더를 열고 Claude Code를 실행한 뒤:
+
+```
+/setup my-project
+```
 
 ```
 ┌─────────────────────────────────────────┐
-│       claude-config 프로젝트 셋업        │
+│       claude-config Project Setup       │
 └─────────────────────────────────────────┘
 
-프로젝트 이름 (기본값: my-app): my-project
+Project name (default: my-app): my-project
 
-🚀 'my-project' 생성 중...
-✅ 'my-project' 세팅 완료!
+🚀 Creating 'my-project'...
+✅ 'my-project' is ready!
 → cd my-project && npm run dev
 ```
 
@@ -30,13 +33,13 @@ bash ~/claude-config/setup.sh
 
 ## 구현 기능
 
-### 기능 1 — 프로젝트 자동 셋업 (`setup.sh`)
+### 기능 1 — `/setup` 슬래시 커맨드
 
-`bash setup.sh` 한 줄로 아래를 자동 처리합니다.
+`/setup <프로젝트명>`을 입력하면 새 프로젝트를 자동으로 생성합니다.
 
 - React 18 + Vite + TypeScript 프로젝트 생성
 - Tailwind CSS v4 설치 및 설정
-- `CLAUDE.md` 자동 생성 (Claude Code가 프로젝트를 이해하는 기준 파일)
+- `CLAUDE.md` 자동 생성 (Claude Code가 프로젝트 구조를 바로 파악)
 
 | 항목 | 내용 |
 |---|---|
@@ -46,16 +49,12 @@ bash ~/claude-config/setup.sh
 
 ### 기능 2 — `/review` 슬래시 커맨드
 
-Claude Code에서 `/review`를 입력하면 PR 코드 리뷰를 자동 수행합니다.
+`/review`를 입력하면 현재 변경사항을 자동으로 코드 리뷰합니다.
 
 - `git diff main`으로 변경사항 분석
 - 파일별 변경 내용 1줄 요약
 - 버그 · 보안 이슈 체크
 - `✅ MERGE OK` / `⚠️ 수정 권장` / `❌ 수정 필요` 판정
-
-```
-/review
-```
 
 ---
 
@@ -63,9 +62,11 @@ Claude Code에서 `/review`를 입력하면 PR 코드 리뷰를 자동 수행합
 
 ```
 claude-config/
-├── setup.sh                      # 프로젝트 자동 셋업 스크립트
+├── setup.sh                      # 셸 스크립트 (선택사항)
+├── CLAUDE.md                     # Claude Code용 프로젝트 가이드
 ├── .claude/
 │   └── commands/
+│       ├── setup.md              # /setup 슬래시 커맨드
 │       └── review.md             # /review 슬래시 커맨드
 └── README.md
 ```
@@ -75,6 +76,6 @@ claude-config/
 ## 사용 방법
 
 1. 이 레포를 클론합니다
-2. `bash setup.sh` 실행 → 프로젝트 이름 입력
-3. 생성된 폴더를 VS Code에서 열고 Claude Code 실행
+2. VS Code에서 폴더를 열고 Claude Code 실행
+3. `/setup <프로젝트명>`으로 새 프로젝트 생성
 4. `/review`로 코드 리뷰 바로 사용
